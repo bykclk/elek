@@ -66,6 +66,7 @@ targets:
         CFBundleDisplayName: Elek
         ITSAppUsesNonExemptEncryption: false
         UIApplicationSupportsIndirectInputEvents: true
+        UIRequiresFullScreen: true
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
         UILaunchStoryboardName: LaunchScreen
