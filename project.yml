@@ -69,7 +69,7 @@ targets:
           - UIInterfaceOrientationPortrait
         UILaunchScreen:
           UIColorName: LaunchBackground
-          UIImageName: LaunchMark
+          UIImageName: LaunchLogo
           UIImageRespectsSafeAreaInsets: true
     settings:
       base:
