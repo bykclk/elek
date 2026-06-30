@@ -1,0 +1,9 @@
+{
+  "en-US": {
+    "description": "Elek is a privacy utility that blocks ads and trackers at the DNS level, across your entire iPhone — not just one app, but every app and Safari.\n\nHow it works\nElek inspects your device's domain (DNS) lookups on-device. It blocks ad and tracker domains locally and resolves everything else over encrypted DNS-over-HTTPS. No traffic ever goes to the developer.\n\n• System-wide — works in every app and browser\n• On-device — blocking decisions happen on your phone\n• Encrypted — allowed queries are resolved over DNS-over-HTTPS\n• Transparent — see how many requests were blocked today\n• Privacy-first — no account, no ads, no tracking, no data collection\n• One tap — turn protection on or off with a single button\n\nElek does not collect, store, or sell your data. Privacy is the whole point.\n\nNote: Elek uses a Network Extension (DNS Proxy) and asks for a system permission the first time you turn it on. The blocklist is downloaded to your device from an open-source list.",
+    "keywords": "ad blocker,adblock,tracker,privacy,dns,anti-tracking,ads,block,security,no ads",
+    "promotionalText": "Block ads and trackers across every app on your device. No account, no ads, no data collection — just a faster, cleaner internet.",
+    "supportURL": "https://github.com/bykclk/elek",
+    "marketingURL": ""
+  }
+}
