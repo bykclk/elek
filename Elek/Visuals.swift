@@ -230,16 +230,20 @@ struct HeaderView: View {
 
     var body: some View {
         HStack {
-            HStack(spacing: 9) {
-                RoundedRectangle(cornerRadius: 7, style: .continuous)
-                    .fill(palette.accent.opacity(0.14))
-                    .frame(width: 22, height: 22)
+            HStack(spacing: 10) {
+                // Mini app-icon: accent gradient chip with the white Elek mark.
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .fill(LinearGradient(colors: [Color(hex: 0x4FB6A0), Color(hex: 0x2E7E6C)],
+                                         startPoint: .top, endPoint: .bottom))
+                    .frame(width: 28, height: 28)
                     .overlay(
-                        DottedMesh(color: palette.accent, spacing: 5, dotRadius: 1.0)
-                            .mask(RoundedRectangle(cornerRadius: 7, style: .continuous))
+                        ElekMark(color: .white, lineWidth: 2.6)
+                            .frame(width: 15, height: 15)
                     )
+                    .shadow(color: Color(hex: 0x2E7E6C).opacity(0.35), radius: 4, x: 0, y: 2)
+
                 Text("Elek")
-                    .font(.system(size: 21, weight: .semibold))
+                    .font(.system(size: 22, weight: .semibold))
                     .foregroundStyle(palette.text)
             }
 
