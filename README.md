@@ -1,18 +1,20 @@
 # Elek (code name: Fuse)
 
-Personal-use iOS app that blocks ads and trackers system-wide on-device, at the
-DNS level, via a Network Extension DNS Proxy. iOS 16+, Swift + SwiftUI, with a
-build-time Go tool for the blocklist.
+iOS app that blocks ads and trackers system-wide on-device, at the DNS level,
+via a Network Extension DNS Proxy. iOS 16+, Swift + SwiftUI. Pure Swift — the
+blocklist filter is built both on-device and at build time by the same Swift
+code.
 
 ## Layout
 
 | Path | What |
 |------|------|
-| `Elek/` | App target (SwiftUI UI + `NEDNSProxyManager` wrapper + blocklist installer + counter store) |
-| `ElekProxy/` | DNS Proxy extension (`NEDNSProxyProvider`, UDP/TCP forwarders, DoH, Binary Fuse reader) |
+| `Elek/` | App target: SwiftUI UI, `NEDNSProxyManager` wrapper, blocklist installer/updater, on-device Binary Fuse builder, counter store |
+| `ElekProxy/` | DNS Proxy extension: `NEDNSProxyProvider`, UDP/TCP forwarders, DoH, Binary Fuse reader |
 | `Shared/` | Constants, App Group helpers, shared blocked-today counter |
-| `filtergen/` | Go tool that builds `blocklist.bin` from a HaGeZi domain list |
-| `scripts/build-blocklist.sh` | Download a HaGeZi list and regenerate `blocklist.bin` |
+| `tools/` | `seed.txt` (hand-authored seed list) + `seedgen` (Swift build-time tool) |
+| `scripts/build-seed.sh` | Rebuild the bundled seed `blocklist.bin` from `tools/seed.txt` |
+| `docs/` | Privacy policy, App Review notes, App Store listing draft, screenshots |
 | `project.yml` | XcodeGen project definition |
 
 ## Build
@@ -39,16 +41,19 @@ xcodebuild -project Elek.xcodeproj -scheme Elek -sdk iphoneos \
 
 ## Blocklist
 
-`Elek/Resources/blocklist.bin` is a Binary Fuse (8-bit) filter built from a
-HaGeZi domain list. Regenerate / change list size with:
+`Elek/Resources/blocklist.bin` is a Binary Fuse (8-bit) filter, built from the
+hand-authored seed in `tools/seed.txt` and shipped for offline first-launch
+protection. After launch the app downloads a larger public list (HaGeZi) to the
+device and rebuilds the filter locally — nothing GPL-licensed is bundled.
+
+The same `BinaryFuseBuilder` (Swift) builds the filter at build time and
+on-device; the format is little-endian and self-contained.
+
+Regenerate the seed after editing `tools/seed.txt`:
 
 ```sh
-scripts/build-blocklist.sh light    # ~92k domains (default)
-scripts/build-blocklist.sh pro      # larger
+scripts/build-seed.sh
 ```
-
-The Go writer (`filtergen`) and the Swift reader (`ElekProxy/Blocklist.swift`)
-share a fixed little-endian format and are kept byte-for-byte compatible.
 
 ## How it works
 
@@ -58,3 +63,8 @@ blocklist → Binary Fuse (checking the full name and each parent suffix). Block
 names get an `NXDOMAIN` answer locally and bump the shared counter; everything
 else is forwarded to Cloudflare over DoH (`https://1.1.1.1/dns-query`), with a
 plain-UDP fallback so connectivity is never broken.
+
+## Privacy
+
+Elek collects no data. DNS is processed on-device; allowed queries are
+forwarded encrypted (DoH) to Cloudflare. See [docs/privacy-policy.md](docs/privacy-policy.md).

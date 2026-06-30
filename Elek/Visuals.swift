@@ -141,12 +141,12 @@ struct StatusView: View {
                 .shadow(color: isOn ? palette.accent.opacity(0.8) : .clear, radius: 5)
 
             VStack(alignment: .leading, spacing: 3) {
-                Text(isOn ? "Koruma aktif" : "Koruma kapalı")
+                Text(isOn ? "Protection active" : "Protection off")
                     .font(.system(size: 17, weight: .semibold))
                     .foregroundStyle(palette.text)
                 Text(isOn
-                     ? "Reklamlar ve izleyiciler cihazında engelleniyor."
-                     : "Filtreleme şu an duraklatıldı. Açmak için dokun.")
+                     ? "Ads and trackers are being blocked on your device."
+                     : "Filtering is paused. Tap to turn on.")
                     .font(.system(size: 13))
                     .foregroundStyle(palette.secondary)
             }
@@ -169,7 +169,7 @@ struct LiveChip: View {
                 .scaleEffect(pulse ? 1.0 : 0.55)
                 .opacity(pulse ? 1 : 0.4)
                 .animation(.easeInOut(duration: 0.9).repeatForever(autoreverses: true), value: pulse)
-            Text("canlı")
+            Text("live")
                 .font(.system(size: 12, weight: .medium))
                 .foregroundStyle(accent)
         }
@@ -191,14 +191,14 @@ struct CounterBlock: View {
                 .frame(height: 1)
                 .padding(.bottom, 18)
 
-            Text(count, format: .number.grouping(.automatic).locale(Locale(identifier: "tr_TR")))
+            Text(count, format: .number.grouping(.automatic))
                 .font(.system(size: 54, weight: .semibold))
                 .monospacedDigit()
                 .foregroundStyle(isOn ? palette.accent : palette.secondary)
                 .contentTransition(.numericText())
                 .animation(.snappy, value: count)
 
-            Text("BUGÜN ENGELLENEN İSTEK")
+            Text("REQUESTS BLOCKED TODAY")
                 .font(.system(size: 11, weight: .medium))
                 .tracking(0.5)
                 .foregroundStyle(palette.secondary)
@@ -213,7 +213,7 @@ struct CounterBlock: View {
             HStack(spacing: 5) {
                 Image(systemName: "checkmark")
                     .font(.system(size: 10, weight: .bold))
-                Text("Sistem genelinde · DNS düzeyinde")
+                Text("System-wide · DNS level")
                     .font(.system(size: 12))
             }
             .foregroundStyle(palette.secondary)

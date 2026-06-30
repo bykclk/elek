@@ -1,0 +1,8 @@
+title: Elek
+description: System-wide ad & tracker blocker for iOS
+theme: jekyll-theme-minimal
+
+# Keep internal drafts out of the published site.
+exclude:
+  - app-review-notes.md
+  - app-store-listing.md

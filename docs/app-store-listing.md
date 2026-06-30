@@ -1,71 +1,72 @@
 # App Store listing — Elek (draft)
 
 > Fill these into App Store Connect. "Elek" alone may be taken; if so use the
-> fallback name. Character limits noted.
+> fallback name. English is the primary localization; a Turkish localization can
+> be added later in App Store Connect.
 
 ## Name (max 30)
 - Primary: **Elek**
-- Fallback: **Elek – Reklam Engelleyici**
+- Fallback: **Elek – Ad Blocker**
 
 ## Subtitle (max 30)
-Reklam ve izleyici engelleyici
+System-wide ad & tracker blocker
 
 ## Promotional text (max 170, editable anytime)
-Cihazında, sistem genelinde reklam ve izleyici engelle. Hesap yok, reklam yok,
-veri toplama yok — sadece daha hızlı ve daha temiz bir internet.
+Block ads and trackers across every app on your device. No account, no ads, no
+data collection — just a faster, cleaner internet.
 
 ## Description
-Elek, iPhone'unda reklamları ve izleyicileri DNS düzeyinde, sistem genelinde
-engelleyen bir gizlilik aracıdır. Tek bir uygulamada değil; tüm uygulamalarda ve
-Safari'de çalışır.
+Elek is a privacy utility that blocks ads and trackers at the DNS level, across
+your entire iPhone — not just one app, but every app and Safari.
 
-Nasıl çalışır?
-Elek, cihazının yaptığı alan adı (DNS) sorgularını cihaz üzerinde inceler.
-Reklam ve izleyici alanlarını yerel olarak engeller; geri kalan sorguları şifreli
-DNS-over-HTTPS ile çözer. Hiçbir trafik geliştiriciye gitmez.
+How it works
+Elek inspects your device's domain (DNS) lookups on-device. It blocks ad and
+tracker domains locally and resolves everything else over encrypted
+DNS-over-HTTPS. No traffic ever goes to the developer.
 
-• Sistem genelinde — her uygulamada ve tarayıcıda çalışır
-• Cihazda çalışır — engelleme kararları telefonunda verilir
-• Şifreli — izin verilen sorgular DNS-over-HTTPS ile çözülür
-• Şeffaf — bugün engellenen istek sayısını gör
-• Gizlilik dostu — hesap yok, reklam yok, takip yok, veri toplama yok
-• Tek dokunuş — büyük düğmeyle aç/kapat
+• System-wide — works in every app and browser
+• On-device — blocking decisions happen on your phone
+• Encrypted — allowed queries are resolved over DNS-over-HTTPS
+• Transparent — see how many requests were blocked today
+• Privacy-first — no account, no ads, no tracking, no data collection
+• One tap — turn protection on or off with a single button
 
-Elek senin verini toplamaz, saklamaz, satmaz. Gizlilik uygulamanın bütün amacı.
+Elek does not collect, store, or sell your data. Privacy is the whole point.
 
-Not: Elek bir Ağ Uzantısı (DNS Proxy) kullanır; ilk açtığında bir sistem izni
-ister. Engelleme listesi açık kaynaklı bir listeden cihazına indirilir.
+Note: Elek uses a Network Extension (DNS Proxy) and asks for a system permission
+the first time you turn it on. The blocklist is downloaded to your device from an
+open-source list.
 
 ## Keywords (max 100, comma-separated, no spaces)
-reklam engelleyici,adblock,izleyici,gizlilik,dns,takip engelleme,reklam,engelle,güvenlik,hızlandır
+ad blocker,adblock,tracker,privacy,dns,anti-tracking,ads,block,security,no ads
 
 ## Support URL
-https://github.com/<kullanıcı>/elek  (veya bir destek sayfası)
+https://github.com/bykclk/elek
 
 ## Marketing URL (optional)
-(boş bırakılabilir)
+(can be left blank)
 
 ## Privacy Policy URL
-https://<kullanıcı>.github.io/elek/privacy-policy  (docs/privacy-policy.md'yi yayınla)
+https://bykclk.github.io/elek/privacy-policy.html
 
 ## Category
 - Primary: Utilities
 - Secondary: Productivity
 
 ## Age rating
-4+ (reklam yok, kullanıcı üretimi içerik yok)
+4+ (no ads, no user-generated content)
 
 ## App Privacy (nutrition label answers)
 - Data collection: **No, we do not collect data from this app.**
-  (Cihazda işlenen DNS geliştiriciye gönderilmez; izin verilen sorgular
-  Cloudflare'a DoH ile gider ama bizim tarafımızdan toplanmaz.)
+  (On-device DNS is not sent to the developer; allowed queries go to Cloudflare
+  over DoH but are not collected by us.)
 
 ## App Review Information
 - Sign-in required: No
-- Notes: docs/app-review-notes.md içeriğini yapıştır (gizlilik politikası URL'sini ekle).
+- Notes: paste docs/app-review-notes.md (include the privacy policy URL).
 - Contact: omerbuyukcelik@gmail.com
 
 ## Export compliance
 - Uses encryption: Yes, but only standard HTTPS/TLS (DNS-over-HTTPS).
-  Genelde "exempt" — App Store Connect'te "yalnızca standart şifreleme"
-  şıkkını seçersen ek belge istemez.
+  Typically "exempt" — choose the "only standard encryption" option in App Store
+  Connect and no extra documentation is required.
