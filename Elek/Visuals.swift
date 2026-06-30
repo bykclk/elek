@@ -244,13 +244,6 @@ struct HeaderView: View {
             }
 
             Spacer()
-
-            // Inert in v1.
-            Image(systemName: "line.3.horizontal")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundStyle(palette.text.opacity(0.8))
-                .frame(width: 38, height: 38)
-                .background(Circle().fill(palette.text.opacity(0.06)))
         }
     }
 }
