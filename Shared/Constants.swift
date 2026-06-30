@@ -23,4 +23,12 @@ enum AppConstants {
     static let blockedCountKey = "blockedToday.count"
     /// Shared UserDefaults key for the day (yyyy-MM-dd) the counter belongs to.
     static let blockedCountDayKey = "blockedToday.day"
+
+    /// Shared UserDefaults key for when the on-device blocklist was last updated.
+    static let blocklistUpdatedKey = "blocklist.lastUpdated"
+
+    /// Remote domain list fetched on-device to rebuild the blocklist. HaGeZi is
+    /// GPLv3, so we never bundle/redistribute it — the user's device fetches it
+    /// from the original source and builds the filter locally.
+    static let remoteListURL = "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/light.txt"
 }
