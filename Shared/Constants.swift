@@ -9,11 +9,11 @@ import Foundation
 enum AppConstants {
     /// App Group container shared by the app and the extension.
     /// Must match `com.apple.security.application-groups` in both entitlements.
-    static let appGroupID = "group.com.elek.app"
+    static let appGroupID = "group.com.bykclk.elek"
 
     /// Bundle identifier of the DNS proxy extension. Must equal the extension
     /// target's PRODUCT_BUNDLE_IDENTIFIER in project.yml.
-    static let proxyBundleID = "com.elek.app.dnsproxy"
+    static let proxyBundleID = "com.bykclk.elek.dnsproxy"
 
     /// Filename of the memory-mapped Binary Fuse blocklist inside the App Group
     /// container (written in step 3).

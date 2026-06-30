@@ -16,7 +16,7 @@
 
 name: Elek
 options:
-  bundleIdPrefix: com.elek
+  bundleIdPrefix: com.bykclk
   deploymentTarget:
     iOS: "16.0"
   createIntermediateGroups: true
@@ -62,7 +62,7 @@ targets:
         buildPhase: resources
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.elek.app
+        PRODUCT_BUNDLE_IDENTIFIER: com.bykclk.elek
         CODE_SIGN_ENTITLEMENTS: Elek/Elek.entitlements
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         INFOPLIST_KEY_UILaunchScreen_Generation: "YES"
@@ -91,6 +91,6 @@ targets:
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).DNSProxyProvider
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.elek.app.dnsproxy
+        PRODUCT_BUNDLE_IDENTIFIER: com.bykclk.elek.dnsproxy
         CODE_SIGN_ENTITLEMENTS: ElekProxy/ElekProxy.entitlements
         GENERATE_INFOPLIST_FILE: "YES"

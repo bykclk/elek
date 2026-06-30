@@ -20,7 +20,7 @@ final class ProxyManager: ObservableObject {
     @Published private(set) var state: State = .unknown
 
     private let manager = NEDNSProxyManager.shared()
-    private let log = Logger(subsystem: "com.elek.app", category: "ProxyManager")
+    private let log = Logger(subsystem: "com.bykclk.elek", category: "ProxyManager")
 
     var isOn: Bool { state == .on }
 

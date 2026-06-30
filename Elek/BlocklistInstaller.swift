@@ -6,7 +6,7 @@ import os
 /// launch but only copies when the bundled file is new or changed (compared by
 /// size), so updating the app updates the on-device blocklist.
 enum BlocklistInstaller {
-    private static let log = Logger(subsystem: "com.elek.app", category: "BlocklistInstaller")
+    private static let log = Logger(subsystem: "com.bykclk.elek", category: "BlocklistInstaller")
 
     static func installIfNeeded() {
         guard let bundled = Bundle.main.url(forResource: "blocklist", withExtension: "bin") else {

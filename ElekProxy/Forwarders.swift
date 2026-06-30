@@ -7,7 +7,7 @@ import os
 enum Upstream {
     static let host = Network.NWEndpoint.Host("1.1.1.1")
     static let port = Network.NWEndpoint.Port(integerLiteral: 53)
-    static let queue = DispatchQueue(label: "com.elek.app.dnsproxy.upstream", attributes: .concurrent)
+    static let queue = DispatchQueue(label: "com.bykclk.elek.dnsproxy.upstream", attributes: .concurrent)
 }
 
 /// DNS-over-HTTPS upstream (RFC 8484). We POST the raw DNS query to Cloudflare
