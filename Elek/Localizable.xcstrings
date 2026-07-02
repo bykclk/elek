@@ -1,0 +1,44 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Protection active" : {
+      "localizations" : {
+        "tr" : { "stringUnit" : { "state" : "translated", "value" : "Koruma aktif" } }
+      }
+    },
+    "Protection off" : {
+      "localizations" : {
+        "tr" : { "stringUnit" : { "state" : "translated", "value" : "Koruma kapalı" } }
+      }
+    },
+    "Ads and trackers are being blocked on your device." : {
+      "localizations" : {
+        "tr" : { "stringUnit" : { "state" : "translated", "value" : "Reklamlar ve izleyiciler cihazında engelleniyor." } }
+      }
+    },
+    "Filtering is paused. Tap to turn on." : {
+      "localizations" : {
+        "tr" : { "stringUnit" : { "state" : "translated", "value" : "Filtreleme şu an duraklatıldı. Açmak için dokun." } }
+      }
+    },
+    "live" : {
+      "localizations" : {
+        "tr" : { "stringUnit" : { "state" : "translated", "value" : "canlı" } }
+      }
+    },
+    "REQUESTS BLOCKED TODAY" : {
+      "localizations" : {
+        "tr" : { "stringUnit" : { "state" : "translated", "value" : "BUGÜN ENGELLENEN İSTEK" } }
+      }
+    },
+    "System-wide · DNS level" : {
+      "localizations" : {
+        "tr" : { "stringUnit" : { "state" : "translated", "value" : "Sistem genelinde · DNS düzeyinde" } }
+      }
+    },
+    "Elek" : {
+      "shouldTranslate" : false
+    }
+  },
+  "version" : "1.0"
+}

@@ -30,6 +30,7 @@
 		BE302BB7974E47D5FE6007E8 /* BlocklistInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BD3E7B0F320EB7DD649C29 /* BlocklistInstaller.swift */; };
 		C96FD061F5AD83AB13DA321C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DF80128486EEB433405A8 /* Theme.swift */; };
 		CE07AE5F58699AF620816F30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDF07FBE9BFA47D5880A2059 /* LaunchScreen.storyboard */; };
+		DF6616BFAA55904F00EB05DD /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F304C285B2A8C58DC4D900FC /* Localizable.xcstrings */; };
 		E7ED9D19F6911925510DAEA9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B079A1E514FEF4F4091A7B /* Constants.swift */; };
 		EBCC54ABD19018130EFFA4B9 /* ElekProxy.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6B8ABB56CF1C6853F0B956BC /* ElekProxy.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F2139324167CCAF2C7C40D5B /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5685FC14A9E467A25E9953F1 /* AppGroup.swift */; };
@@ -88,6 +89,7 @@
 		D850D72F8A5FE23406608639 /* BinaryFuseBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryFuseBuilder.swift; sourceTree = "<group>"; };
 		DB8745BD8BB28F4393C7C9DE /* Forwarders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forwarders.swift; sourceTree = "<group>"; };
 		F24C370E973806B055A88E59 /* blocklist.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = blocklist.bin; sourceTree = "<group>"; };
+		F304C285B2A8C58DC4D900FC /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -105,6 +107,7 @@
 				2DADE9EAABFBF49D99720CD0 /* ElekApp.swift */,
 				B8A3577F2B98A3220A6DC94A /* Info.plist */,
 				CDF07FBE9BFA47D5880A2059 /* LaunchScreen.storyboard */,
+				F304C285B2A8C58DC4D900FC /* Localizable.xcstrings */,
 				D39DCB3D9B5F44AF5D58B8E8 /* PrivacyInfo.xcprivacy */,
 				D258B9D160A7C1B78A571FEC /* ProxyManager.swift */,
 				A18DF80128486EEB433405A8 /* Theme.swift */,
@@ -231,6 +234,7 @@
 			knownRegions = (
 				Base,
 				en,
+				tr,
 			);
 			mainGroup = 1BF5871918BE2E2C3E5BC597;
 			minimizedProjectReferenceProxies = 1;
@@ -252,6 +256,7 @@
 			files = (
 				BD9C837C0182BB77391A7592 /* Assets.xcassets in Resources */,
 				CE07AE5F58699AF620816F30 /* LaunchScreen.storyboard in Resources */,
+				DF6616BFAA55904F00EB05DD /* Localizable.xcstrings in Resources */,
 				83961A5C7BFF9D2F3075FA86 /* PrivacyInfo.xcprivacy in Resources */,
 				B5DB1DBD935604A84E677F90 /* blocklist.bin in Resources */,
 			);
