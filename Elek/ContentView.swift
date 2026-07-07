@@ -93,7 +93,7 @@ struct PermissionExplainer: View {
                 .font(.system(size: 22, weight: .semibold))
                 .foregroundStyle(palette.text)
 
-            Text("Elek installs a private, on-device DNS filter that blocks ads and trackers across every app. iOS will now ask permission to add a proxy configuration. Your browsing data never leaves your device.")
+            Text("Elek installs a private, on-device DNS filter that blocks ads and trackers across every app. iOS will now ask permission to add a VPN configuration — it’s a local filter only: there is no VPN server, and your browsing data never leaves your device.")
                 .font(.system(size: 15))
                 .foregroundStyle(palette.secondary)
                 .multilineTextAlignment(.center)

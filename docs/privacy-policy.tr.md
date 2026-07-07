@@ -13,6 +13,11 @@ yok.
 - **DNS sorguları cihazınızda işlenir.** Koruma açıkken Elek, cihazınızın
   baktığı alan adlarını inceler ve her birini engelleyip engellemeyeceğine karar
   verir. Bu karar tamamen cihazınızda verilir.
+- **Filtre, yerel bir VPN yapılandırması olarak çalışır.** iOS, Elek'i VPN
+  olarak gösterir çünkü uygulamaların cihaz üzerinde DNS filtrelemesi yapmasının
+  mekanizması budur. Elek'in tünelinin sunucusu yoktur: tünele yalnızca DNS
+  sorguları girer, bunlar cihazınızda işlenir ve başka hiçbir trafik bu tünelden
+  geçmez.
 - **Engellenen sorgular cihazınızdan çıkmaz.** Bir alan adı engelleme
   listesindeyse Elek ona yerel olarak (`NXDOMAIN` yanıtıyla) cevap verir. Hiçbir
   yere bir şey gönderilmez.

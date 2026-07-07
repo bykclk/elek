@@ -97,8 +97,8 @@ targets:
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleShortVersionString: $(MARKETING_VERSION)
         NSExtension:
-          NSExtensionPointIdentifier: com.apple.networkextension.dns-proxy
-          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).DNSProxyProvider
+          NSExtensionPointIdentifier: com.apple.networkextension.packet-tunnel
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).PacketTunnelProvider
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.bykclk.elek.dnsproxy

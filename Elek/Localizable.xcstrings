@@ -36,12 +36,22 @@
     "Elek" : {
       "shouldTranslate" : false
     },
-    "Elek installs a private, on-device DNS filter that blocks ads and trackers across every app. iOS will now ask permission to add a proxy configuration. Your browsing data never leaves your device." : {
+    "Elek installs a private, on-device DNS filter that blocks ads and trackers across every app. iOS will now ask permission to add a VPN configuration — it’s a local filter only: there is no VPN server, and your browsing data never leaves your device." : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Elek, tüm uygulamalarda reklamları ve izleyicileri engelleyen özel, cihaz üzerinde çalışan bir DNS filtresi kurar. iOS şimdi bir proxy yapılandırması eklemek için izin isteyecek. Tarama verilerin cihazından hiç çıkmaz."
+            "value" : "Elek, tüm uygulamalarda reklamları ve izleyicileri engelleyen özel, cihaz üzerinde çalışan bir DNS filtresi kurar. iOS şimdi bir VPN yapılandırması eklemek için izin isteyecek — bu yalnızca yerel bir filtredir: VPN sunucusu yoktur ve tarama verilerin cihazından hiç çıkmaz."
+          }
+        }
+      }
+    },
+    "Protection couldn’t start. Please try again." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koruma başlatılamadı. Lütfen tekrar dene."
           }
         }
       }

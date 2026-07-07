@@ -14,13 +14,14 @@
 		24D95A47A8DEBBC3FAED3A35 /* ElekApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DADE9EAABFBF49D99720CD0 /* ElekApp.swift */; };
 		26EA1481AA1DE28F677C9A8B /* Visuals.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AF9E9B9893BF6B7C76A316 /* Visuals.swift */; };
 		3AF0B2301300CC5B331C0C7E /* DNSMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C82ACCEBF8FF2151DCAE6 /* DNSMessage.swift */; };
+		3D683D38D4D2F710420C62A6 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A73188ED560429933B4E8D /* PacketTunnelProvider.swift */; };
 		437A74617C5263FFA9F156DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B079A1E514FEF4F4091A7B /* Constants.swift */; };
 		59142C2524FAF45364F03D32 /* BlockCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F1AB3E834B03698697A9AF /* BlockCounter.swift */; };
 		59CFA951BC6B1E8F78B74348 /* Blocklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C511EE0A50A59073623B50 /* Blocklist.swift */; };
-		6C023ECFF0AE21D33502BC04 /* DNSProxyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A20D155E2AD5D46292C44 /* DNSProxyProvider.swift */; };
 		83961A5C7BFF9D2F3075FA86 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D39DCB3D9B5F44AF5D58B8E8 /* PrivacyInfo.xcprivacy */; };
 		9602763034A5B22A8BE38CA5 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 05AFAD7CA8170398D2320BE1 /* PrivacyInfo.xcprivacy */; };
 		968A4FC49A3A316B02E481CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07620B13754ECCE76E25749B /* ContentView.swift */; };
+		97894D8E51C16C55416519DE /* IPPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B28F4DC4E73695C9BCCB59 /* IPPacket.swift */; };
 		9CF190051A090C74FF07D3C2 /* ProxyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D258B9D160A7C1B78A571FEC /* ProxyManager.swift */; };
 		A2BB50CB4AA1B4DBA46B0424 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5685FC14A9E467A25E9953F1 /* AppGroup.swift */; };
 		AA748FC0FD979C4E5924E894 /* BlockCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F1AB3E834B03698697A9AF /* BlockCounter.swift */; };
@@ -71,10 +72,11 @@
 		5A6C82ACCEBF8FF2151DCAE6 /* DNSMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSMessage.swift; sourceTree = "<group>"; };
 		60656FDC38807CB01E4F6D8E /* Elek.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Elek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63B079A1E514FEF4F4091A7B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		651A20D155E2AD5D46292C44 /* DNSProxyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSProxyProvider.swift; sourceTree = "<group>"; };
 		6B8ABB56CF1C6853F0B956BC /* ElekProxy.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ElekProxy.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		78A73188ED560429933B4E8D /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
 		7B0ECCDDCCA2C5D278ADF982 /* DomainListParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainListParser.swift; sourceTree = "<group>"; };
 		7B1A465F842CD2414A244C1C /* ElekProxy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ElekProxy.entitlements; sourceTree = "<group>"; };
+		86B28F4DC4E73695C9BCCB59 /* IPPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPPacket.swift; sourceTree = "<group>"; };
 		A18DF80128486EEB433405A8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		A5C511EE0A50A59073623B50 /* Blocklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blocklist.swift; sourceTree = "<group>"; };
 		B3F1AB3E834B03698697A9AF /* BlockCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCounter.swift; sourceTree = "<group>"; };
@@ -159,10 +161,11 @@
 			children = (
 				A5C511EE0A50A59073623B50 /* Blocklist.swift */,
 				5A6C82ACCEBF8FF2151DCAE6 /* DNSMessage.swift */,
-				651A20D155E2AD5D46292C44 /* DNSProxyProvider.swift */,
 				7B1A465F842CD2414A244C1C /* ElekProxy.entitlements */,
 				DB8745BD8BB28F4393C7C9DE /* Forwarders.swift */,
 				5480DC68A43209FCCD5F0EBF /* Info.plist */,
+				86B28F4DC4E73695C9BCCB59 /* IPPacket.swift */,
+				78A73188ED560429933B4E8D /* PacketTunnelProvider.swift */,
 				05AFAD7CA8170398D2320BE1 /* PrivacyInfo.xcprivacy */,
 			);
 			path = ElekProxy;
@@ -282,8 +285,9 @@
 				59CFA951BC6B1E8F78B74348 /* Blocklist.swift in Sources */,
 				437A74617C5263FFA9F156DE /* Constants.swift in Sources */,
 				3AF0B2301300CC5B331C0C7E /* DNSMessage.swift in Sources */,
-				6C023ECFF0AE21D33502BC04 /* DNSProxyProvider.swift in Sources */,
 				15E6AF555873DC280544A86F /* Forwarders.swift in Sources */,
+				97894D8E51C16C55416519DE /* IPPacket.swift in Sources */,
+				3D683D38D4D2F710420C62A6 /* PacketTunnelProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

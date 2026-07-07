@@ -12,6 +12,10 @@ accounts, no analytics, no advertising, and no tracking.
 - **DNS queries are processed on your device.** When protection is on, Elek
   inspects the domain names your device looks up and decides whether to block or
   allow each one. This decision happens entirely on your device.
+- **The filter runs as a local VPN configuration.** iOS shows Elek as a VPN
+  because that is the mechanism apps use to filter DNS on-device. Elek's tunnel
+  has no server: only DNS queries enter it, they are processed on your device,
+  and no other traffic is routed through it.
 - **Blocked queries never leave your device.** If a domain is on the blocklist,
   Elek answers it locally (with an `NXDOMAIN` response). Nothing is sent anywhere.
 - **Allowed queries are forwarded encrypted.** Domains that are not blocked are

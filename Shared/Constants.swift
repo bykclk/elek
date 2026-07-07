@@ -11,9 +11,16 @@ enum AppConstants {
     /// Must match `com.apple.security.application-groups` in both entitlements.
     static let appGroupID = "group.com.bykclk.elek"
 
-    /// Bundle identifier of the DNS proxy extension. Must equal the extension
+    /// Bundle identifier of the filtering extension. Must equal the extension
     /// target's PRODUCT_BUNDLE_IDENTIFIER in project.yml.
     static let proxyBundleID = "com.bykclk.elek.dnsproxy"
+
+    /// Virtual resolver the tunnel advertises to the system. Only this /32 is
+    /// routed into the tunnel, so ONLY DNS enters it — all other traffic flows
+    /// over the normal interfaces untouched.
+    static let dnsServerIP = "10.7.0.1"
+    /// The tunnel's own virtual interface address.
+    static let tunnelClientIP = "10.7.0.2"
 
     /// Filename of the memory-mapped Binary Fuse blocklist inside the App Group
     /// container (written in step 3).
