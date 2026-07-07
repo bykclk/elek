@@ -28,7 +28,7 @@ settings:
     SWIFT_VERSION: "5.0"
     MARKETING_VERSION: "1.0"
     CURRENT_PROJECT_VERSION: "1"
-    TARGETED_DEVICE_FAMILY: "1"     # iPhone only
+    TARGETED_DEVICE_FAMILY: "1,2"   # Universal (iPhone + iPad) — must run natively on iPad
     IPHONEOS_DEPLOYMENT_TARGET: "16.0"
 
 schemes:
@@ -75,7 +75,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.bykclk.elek
         CODE_SIGN_ENTITLEMENTS: Elek/Elek.entitlements
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-        TARGETED_DEVICE_FAMILY: "1"
+        TARGETED_DEVICE_FAMILY: "1,2"
     dependencies:
       - target: ElekProxy
 
@@ -100,4 +100,4 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.bykclk.elek.dnsproxy
         CODE_SIGN_ENTITLEMENTS: ElekProxy/ElekProxy.entitlements
         GENERATE_INFOPLIST_FILE: "YES"
-        TARGETED_DEVICE_FAMILY: "1"
+        TARGETED_DEVICE_FAMILY: "1,2"

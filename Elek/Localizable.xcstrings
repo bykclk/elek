@@ -2,39 +2,46 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Protection active" : {
-      "localizations" : {
-        "tr" : { "stringUnit" : { "state" : "translated", "value" : "Koruma aktif" } }
-      }
+      "localizations" : { "tr" : { "stringUnit" : { "state" : "translated", "value" : "Koruma aktif" } } }
     },
     "Protection off" : {
-      "localizations" : {
-        "tr" : { "stringUnit" : { "state" : "translated", "value" : "Koruma kapalı" } }
-      }
+      "localizations" : { "tr" : { "stringUnit" : { "state" : "translated", "value" : "Koruma kapalı" } } }
     },
     "Ads and trackers are being blocked on your device." : {
-      "localizations" : {
-        "tr" : { "stringUnit" : { "state" : "translated", "value" : "Reklamlar ve izleyiciler cihazında engelleniyor." } }
-      }
+      "localizations" : { "tr" : { "stringUnit" : { "state" : "translated", "value" : "Reklamlar ve izleyiciler cihazında engelleniyor." } } }
     },
     "Filtering is paused. Tap to turn on." : {
-      "localizations" : {
-        "tr" : { "stringUnit" : { "state" : "translated", "value" : "Filtreleme şu an duraklatıldı. Açmak için dokun." } }
-      }
+      "localizations" : { "tr" : { "stringUnit" : { "state" : "translated", "value" : "Filtreleme şu an duraklatıldı. Açmak için dokun." } } }
     },
     "live" : {
-      "localizations" : {
-        "tr" : { "stringUnit" : { "state" : "translated", "value" : "canlı" } }
-      }
+      "localizations" : { "tr" : { "stringUnit" : { "state" : "translated", "value" : "canlı" } } }
     },
     "REQUESTS BLOCKED TODAY" : {
-      "localizations" : {
-        "tr" : { "stringUnit" : { "state" : "translated", "value" : "BUGÜN ENGELLENEN İSTEK" } }
-      }
+      "localizations" : { "tr" : { "stringUnit" : { "state" : "translated", "value" : "BUGÜN ENGELLENEN İSTEK" } } }
     },
     "System-wide · DNS level" : {
-      "localizations" : {
-        "tr" : { "stringUnit" : { "state" : "translated", "value" : "Sistem genelinde · DNS düzeyinde" } }
-      }
+      "localizations" : { "tr" : { "stringUnit" : { "state" : "translated", "value" : "Sistem genelinde · DNS düzeyinde" } } }
+    },
+    "Turn on protection" : {
+      "localizations" : { "tr" : { "stringUnit" : { "state" : "translated", "value" : "Korumayı aç" } } }
+    },
+    "Elek installs a private, on-device DNS filter that blocks ads and trackers across every app. iOS will now ask permission to add a proxy configuration. Your browsing data never leaves your device." : {
+      "localizations" : { "tr" : { "stringUnit" : { "state" : "translated", "value" : "Elek, tüm uygulamalarda reklamları ve izleyicileri engelleyen özel, cihaz üzerinde çalışan bir DNS filtresi kurar. iOS şimdi bir proxy yapılandırması eklemek için izin isteyecek. Tarama verilerin cihazından hiç çıkmaz." } } }
+    },
+    "Continue" : {
+      "localizations" : { "tr" : { "stringUnit" : { "state" : "translated", "value" : "Devam et" } } }
+    },
+    "Not now" : {
+      "localizations" : { "tr" : { "stringUnit" : { "state" : "translated", "value" : "Şimdi değil" } } }
+    },
+    "Couldn’t turn on protection" : {
+      "localizations" : { "tr" : { "stringUnit" : { "state" : "translated", "value" : "Koruma açılamadı" } } }
+    },
+    "Try Again" : {
+      "localizations" : { "tr" : { "stringUnit" : { "state" : "translated", "value" : "Tekrar Dene" } } }
+    },
+    "OK" : {
+      "localizations" : { "tr" : { "stringUnit" : { "state" : "translated", "value" : "Tamam" } } }
     },
     "Elek" : {
       "shouldTranslate" : false
