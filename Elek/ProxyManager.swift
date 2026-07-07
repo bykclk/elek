@@ -111,6 +111,11 @@ final class ProxyManager: ObservableObject {
 
     /// Configure, save (first time: system VPN permission prompt) and start the
     /// tunnel. `fresh: true` removes every existing configuration first.
+    ///
+    /// On-demand is deliberately NOT part of the first save: some iOS versions
+    /// reject a brand-new configuration that already has on-demand enabled
+    /// (NEVPNErrorDomain 5, without ever presenting the consent prompt). It is
+    /// added with a silent follow-up save once the config is authorized.
     private func installAndStart(fresh: Bool) async throws {
         let managers = try await NETunnelProviderManager.loadAllFromPreferences()
         if fresh {
@@ -124,14 +129,24 @@ final class ProxyManager: ObservableObject {
         mgr.protocolConfiguration = proto
         mgr.localizedDescription = "Elek"
         mgr.isEnabled = true
-        // Reconnect automatically (reboots, network changes) while enabled.
-        mgr.onDemandRules = [NEOnDemandRuleConnect()]
-        mgr.isOnDemandEnabled = true
+        mgr.isOnDemandEnabled = false
 
-        try await mgr.saveToPreferences()
+        log.info("saving config (fresh=\(fresh, privacy: .public))")
+        try await mgr.saveToPreferences()   // first time: VPN permission prompt
         try await mgr.loadFromPreferences()
         manager = mgr
         try mgr.connection.startVPNTunnel()
+
+        // Now that the user has authorized the configuration, turn on
+        // auto-reconnect with a silent second save. Failure here is not fatal.
+        mgr.onDemandRules = [NEOnDemandRuleConnect()]
+        mgr.isOnDemandEnabled = true
+        do {
+            try await mgr.saveToPreferences()
+            log.info("on-demand enabled")
+        } catch {
+            log.warning("on-demand save failed (non-fatal): \(error.localizedDescription, privacy: .public)")
+        }
     }
 
     func disable() async {
