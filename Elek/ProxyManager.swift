@@ -85,8 +85,9 @@ final class ProxyManager: ObservableObject {
                 state = .error("Protection couldn’t be turned on. When iOS asks, please allow Elek to add its proxy configuration.")
             }
         } catch {
-            log.error("enable failed: \(error.localizedDescription, privacy: .public)")
-            state = .error("Protection couldn’t be turned on. \(error.localizedDescription)")
+            let ns = error as NSError
+            log.error("enable failed: domain=\(ns.domain, privacy: .public) code=\(ns.code, privacy: .public) desc=\(ns.localizedDescription, privacy: .public) userInfo=\(String(describing: ns.userInfo), privacy: .public)")
+            state = .error("Protection couldn’t be turned on. \(error.localizedDescription) (\(ns.domain) \(ns.code))")
         }
     }
 
@@ -103,7 +104,8 @@ final class ProxyManager: ObservableObject {
             state = manager.isEnabled ? .on : .off
             log.info("disabled")
         } catch {
-            log.error("disable failed: \(error.localizedDescription, privacy: .public)")
+            let ns = error as NSError
+            log.error("disable failed: domain=\(ns.domain, privacy: .public) code=\(ns.code, privacy: .public) desc=\(ns.localizedDescription, privacy: .public)")
             state = .error("Couldn’t turn protection off. \(error.localizedDescription)")
         }
     }
