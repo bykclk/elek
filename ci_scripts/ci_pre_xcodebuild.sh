@@ -13,11 +13,8 @@ if [ -z "$CI_BUILD_NUMBER" ]; then
   exit 0
 fi
 
-for plist in Elek/Info.plist ElekProxy/Info.plist; do
-  /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $CI_BUILD_NUMBER" "$plist"
-done
-
-# Keep the build setting in sync too.
+# Info.plists reference $(CURRENT_PROJECT_VERSION); updating the build setting
+# updates the app and the extension identically.
 sed -i '' "s/CURRENT_PROJECT_VERSION = [0-9.]*;/CURRENT_PROJECT_VERSION = ${CI_BUILD_NUMBER};/g" \
   Elek.xcodeproj/project.pbxproj
 

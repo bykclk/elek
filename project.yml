@@ -64,6 +64,8 @@ targets:
       path: Elek/Info.plist
       properties:
         CFBundleDisplayName: Elek
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleShortVersionString: $(MARKETING_VERSION)
         ITSAppUsesNonExemptEncryption: false
         UIApplicationSupportsIndirectInputEvents: true
         UIRequiresFullScreen: true
@@ -92,6 +94,8 @@ targets:
       path: ElekProxy/Info.plist
       properties:
         CFBundleDisplayName: ElekProxy
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleShortVersionString: $(MARKETING_VERSION)
         NSExtension:
           NSExtensionPointIdentifier: com.apple.networkextension.dns-proxy
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).DNSProxyProvider

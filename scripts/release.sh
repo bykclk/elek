@@ -22,14 +22,14 @@ TEAM="9DDG73TKPX"
 
 cd "$ROOT"
 
-echo "==> Setting build number to $BUILD"
-/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD" Elek/Info.plist
-/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD" ElekProxy/Info.plist
-
-echo "==> Archiving (Release, iOS device)"
+echo "==> Archiving (Release, iOS device, build $BUILD)"
+# Info.plists reference $(CURRENT_PROJECT_VERSION), so the build number is set
+# here as a build setting — survives `xcodegen generate`, applies to app AND
+# extension identically.
 rm -rf "$OUT"; mkdir -p "$OUT"
 xcodebuild -project Elek.xcodeproj -scheme Elek -configuration Release \
   -destination 'generic/platform=iOS' -archivePath "$OUT/Elek.xcarchive" \
+  CURRENT_PROJECT_VERSION="$BUILD" \
   -allowProvisioningUpdates \
   -authenticationKeyPath "$KEY" -authenticationKeyID "$KID" -authenticationKeyIssuerID "$ISS" \
   archive | grep -E "ARCHIVE SUCCEEDED|error:" || true
