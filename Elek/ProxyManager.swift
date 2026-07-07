@@ -85,32 +85,53 @@ final class ProxyManager: ObservableObject {
         state = .busy
         startWatchdog()
         do {
-            let managers = try await NETunnelProviderManager.loadAllFromPreferences()
-            let mgr = managers.first ?? NETunnelProviderManager()
-
-            let proto = (mgr.protocolConfiguration as? NETunnelProviderProtocol) ?? NETunnelProviderProtocol()
-            proto.providerBundleIdentifier = AppConstants.proxyBundleID
-            proto.serverAddress = "on-device"   // cosmetic; there is no server
-            mgr.protocolConfiguration = proto
-            mgr.localizedDescription = "Elek"
-            mgr.isEnabled = true
-            // Reconnect automatically (reboots, network changes) while enabled.
-            mgr.onDemandRules = [NEOnDemandRuleConnect()]
-            mgr.isOnDemandEnabled = true
-
-            try await mgr.saveToPreferences()   // first time: VPN permission prompt
-            try await mgr.loadFromPreferences()
-            manager = mgr
-
-            try mgr.connection.startVPNTunnel()
+            do {
+                try await installAndStart(fresh: false)
+            } catch let ns as NSError where ns.domain == NEVPNErrorDomain
+                        && ns.code == NEVPNError.configurationReadWriteFailed.rawValue {
+                // A stale/corrupt configuration (e.g. left over from an earlier
+                // install) can poison saves with code 5. Wipe and retry once
+                // with a brand-new configuration.
+                log.warning("save failed with configurationReadWriteFailed — removing configs and retrying fresh")
+                try await installAndStart(fresh: true)
+            }
             log.info("tunnel start requested")
             syncFromStatus()   // .connecting keeps .busy; observer flips to .on
         } catch {
             let ns = error as NSError
             intent = .none
-            log.error("enable failed: domain=\(ns.domain, privacy: .public) code=\(ns.code, privacy: .public) desc=\(ns.localizedDescription, privacy: .public)")
-            state = .error("Protection couldn’t be turned on. \(error.localizedDescription) (\(ns.domain) \(ns.code))")
+            log.error("enable failed: domain=\(ns.domain, privacy: .public) code=\(ns.code, privacy: .public) desc=\(ns.localizedDescription, privacy: .public) userInfo=\(String(describing: ns.userInfo), privacy: .public)")
+            if ns.domain == NEVPNErrorDomain, ns.code == NEVPNError.configurationReadWriteFailed.rawValue {
+                state = .error("iOS didn’t allow saving the VPN configuration (permission denied). If no permission prompt appeared, check Screen Time › Content & Privacy Restrictions (VPN configuration changes must be allowed), then try again.")
+            } else {
+                state = .error("Protection couldn’t be turned on. \(error.localizedDescription) (\(ns.domain) \(ns.code))")
+            }
         }
+    }
+
+    /// Configure, save (first time: system VPN permission prompt) and start the
+    /// tunnel. `fresh: true` removes every existing configuration first.
+    private func installAndStart(fresh: Bool) async throws {
+        let managers = try await NETunnelProviderManager.loadAllFromPreferences()
+        if fresh {
+            for m in managers { try? await m.removeFromPreferences() }
+        }
+        let mgr = fresh ? NETunnelProviderManager() : (managers.first ?? NETunnelProviderManager())
+
+        let proto = (mgr.protocolConfiguration as? NETunnelProviderProtocol) ?? NETunnelProviderProtocol()
+        proto.providerBundleIdentifier = AppConstants.proxyBundleID
+        proto.serverAddress = "on-device"   // cosmetic; there is no server
+        mgr.protocolConfiguration = proto
+        mgr.localizedDescription = "Elek"
+        mgr.isEnabled = true
+        // Reconnect automatically (reboots, network changes) while enabled.
+        mgr.onDemandRules = [NEOnDemandRuleConnect()]
+        mgr.isOnDemandEnabled = true
+
+        try await mgr.saveToPreferences()
+        try await mgr.loadFromPreferences()
+        manager = mgr
+        try mgr.connection.startVPNTunnel()
     }
 
     func disable() async {

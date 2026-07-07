@@ -6,6 +6,7 @@ struct ContentView: View {
     @Environment(\.colorScheme) private var scheme
     @AppStorage("didExplainPermission") private var didExplain = false
     @State private var showExplainer = false
+    @State private var enableAfterExplainer = false
 
     private var palette: Palette { .resolve(scheme) }
 
@@ -52,11 +53,18 @@ struct ContentView: View {
             Text((proxy.errorMessage ?? "")
                  + "\n\nIf you didn’t see a permission prompt, you can also enable Elek in Settings › General › VPN & Device Management.")
         }
-        .sheet(isPresented: $showExplainer) {
+        .sheet(isPresented: $showExplainer, onDismiss: {
+            // Start only after the sheet is fully gone, so the system VPN
+            // permission alert never races the dismissal animation.
+            if enableAfterExplainer {
+                enableAfterExplainer = false
+                Task { await proxy.enable() }
+            }
+        }) {
             PermissionExplainer(palette: palette) {
                 didExplain = true
+                enableAfterExplainer = true
                 showExplainer = false
-                Task { await proxy.enable() }
             }
         }
     }

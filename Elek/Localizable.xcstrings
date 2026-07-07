@@ -46,16 +46,6 @@
         }
       }
     },
-    "Protection couldn’t start. Please try again." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Koruma başlatılamadı. Lütfen tekrar dene."
-          }
-        }
-      }
-    },
     "Filtering is paused. Tap to turn on." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -106,6 +96,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Koruma aktif"
+          }
+        }
+      }
+    },
+    "Protection couldn’t start. Please try again." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koruma başlatılamadı. Lütfen tekrar dene."
           }
         }
       }
