@@ -15,3 +15,12 @@ xcuserdata/
 # Compiled seed generator (rebuilt by scripts/build-seed.sh).
 # The compiled Elek/Resources/blocklist.bin IS committed.
 tools/seedgen/seedgen
+
+# Signing material — NEVER commit. Certificates and (especially) private keys.
+*.cer
+*.pem
+*.p12
+*.p8
+*.key
+*.csr
+*.mobileprovision
