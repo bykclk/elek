@@ -1,7 +1,7 @@
 # Elek
 
-System-wide ad & tracker blocker for iOS. Blocks ads and trackers on-device at
-the DNS level. No account, no data collection.
+System-wide ad & tracker blocker for iOS. Blocks ads and trackers at the DNS
+level using encrypted DNS. No account, no data collection, no logs.
 
 - [Privacy Policy](privacy-policy.html)
 - [Gizlilik Politikası (Türkçe)](privacy-policy.tr.html)
