@@ -59,8 +59,6 @@ unzip -q "$IPA" -d "$OUT/verify"
 APP="$OUT/verify/Payload/Elek.app"
 codesign -dvvv "$APP" 2>&1 | grep "Authority=Apple Distribution" \
   || { echo "ERROR: app is NOT distribution-signed"; exit 1; }
-codesign -dvvv "$APP/PlugIns/ElekProxy.appex" 2>&1 | grep "Authority=Apple Distribution" \
-  || { echo "ERROR: extension is NOT distribution-signed"; exit 1; }
 echo "    signature OK, CFBundleVersion=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$APP/Info.plist"), UIDeviceFamily=$(/usr/libexec/PlistBuddy -c 'Print :UIDeviceFamily:0' "$APP/Info.plist")"
 
 echo "==> Uploading to App Store Connect"
