@@ -6,12 +6,10 @@
 # ---------------------------------------------------------------------------
 # THINGS YOU MUST CHANGE FOR YOUR OWN DEVICE:
 #   1. DEVELOPMENT_TEAM below  -> your 10-char Apple Developer Team ID.
-#   2. (optional) bundle IDs   -> if you change them, also update:
-#        - the App Group string in Elek/Elek.entitlements
-#          and ElekProxy/ElekProxy.entitlements
-#        - appGroupID / proxyBundleID in Shared/Constants.swift
-# The app bundle id and the extension bundle id must share a prefix, and the
-# extension id MUST equal <app-id>.dnsproxy to match Constants.swift.
+#   2. (optional) bundle ID    -> if you change it, keep it in sync with the
+#      "DNS Settings" capability on the App ID.
+# Elek is a thin NEDNSSettingsManager client (encrypted DNS) — there is no
+# Network Extension target. The DoH resolver lives in worker/.
 # ---------------------------------------------------------------------------
 
 name: Elek
@@ -36,7 +34,6 @@ schemes:
     build:
       targets:
         Elek: all
-        ElekProxy: all
     run:
       config: Debug
     test:
@@ -58,8 +55,6 @@ targets:
     sources:
       - path: Elek
       - path: Shared
-      - path: Elek/Resources
-        buildPhase: resources
     info:
       path: Elek/Info.plist
       properties:
@@ -77,31 +72,4 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.bykclk.elek
         CODE_SIGN_ENTITLEMENTS: Elek/Elek.entitlements
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-        TARGETED_DEVICE_FAMILY: "1,2"
-    dependencies:
-      - target: ElekProxy
-
-  # -------------------------------------------------------------------------
-  # DNS Proxy Network Extension
-  # -------------------------------------------------------------------------
-  ElekProxy:
-    type: app-extension
-    platform: iOS
-    sources:
-      - path: ElekProxy
-      - path: Shared
-    info:
-      path: ElekProxy/Info.plist
-      properties:
-        CFBundleDisplayName: ElekProxy
-        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
-        CFBundleShortVersionString: $(MARKETING_VERSION)
-        NSExtension:
-          NSExtensionPointIdentifier: com.apple.networkextension.packet-tunnel
-          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).PacketTunnelProvider
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.bykclk.elek.dnsproxy
-        CODE_SIGN_ENTITLEMENTS: ElekProxy/ElekProxy.entitlements
-        GENERATE_INFOPLIST_FILE: "YES"
         TARGETED_DEVICE_FAMILY: "1,2"

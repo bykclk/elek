@@ -1,14 +1,15 @@
 import SwiftUI
+import UIKit
 
 struct ContentView: View {
-    @EnvironmentObject private var proxy: ProxyManager
-    @StateObject private var counter = CounterStore()
+    @EnvironmentObject private var dns: DNSManager
     @Environment(\.colorScheme) private var scheme
     @AppStorage("didExplainPermission") private var didExplain = false
     @State private var showExplainer = false
     @State private var enableAfterExplainer = false
 
     private var palette: Palette { .resolve(scheme) }
+    private var isPending: Bool { dns.state == .needsActivation }
 
     var body: some View {
         ZStack {
@@ -19,46 +20,51 @@ struct ContentView: View {
 
                 Spacer(minLength: 12)
 
-                HeroView(isOn: proxy.isOn,
-                         isBusy: proxy.state == .busy,
+                HeroView(isOn: dns.isOn,
+                         isBusy: dns.state == .busy,
+                         isPending: isPending,
                          palette: palette) {
                     heroTapped()
                 }
 
-                StatusView(isOn: proxy.isOn, palette: palette)
+                StatusView(isOn: dns.isOn, isPending: isPending, palette: palette)
                     .padding(.top, 24)
+
+                if isPending {
+                    ActivationBanner(palette: palette) { openSettings() }
+                        .padding(.top, 20)
+                    Button("Remove configuration") {
+                        Task { await dns.disable() }
+                    }
+                    .font(.system(size: 13))
+                    .foregroundStyle(palette.secondary)
+                    .padding(.top, 10)
+                }
 
                 Spacer(minLength: 12)
 
-                CounterBlock(count: counter.count, isOn: proxy.isOn, palette: palette)
+                ProtectionFooter(isOn: dns.isOn, palette: palette)
             }
             .padding(.horizontal, 24)
             .padding(.top, 8)
             .padding(.bottom, 16)
-            // Keep the phone-designed column centered and readable on iPad,
-            // instead of stretching across a large regular-size-class screen.
+            // Keep the phone-designed column centered and readable on iPad.
             .frame(maxWidth: 480, maxHeight: 820)
         }
-        .task { counter.start() }
-        .onDisappear { counter.stop() }
-        // Any failure to turn protection on is shown here — a tap always does
-        // something visible, never a silent no-op.
-        .alert("Couldn’t turn on protection", isPresented: Binding(
-            get: { proxy.errorMessage != nil },
-            set: { if !$0 { proxy.clearError() } }
+        // Any failure surfaces here — a tap always does something visible.
+        .alert("Something went wrong", isPresented: Binding(
+            get: { dns.errorMessage != nil },
+            set: { if !$0 { dns.clearError() } }
         )) {
-            Button("Try Again") { Task { await proxy.enable() } }
+            Button("Try Again") { Task { await dns.enable() } }
             Button("OK", role: .cancel) { }
         } message: {
-            Text((proxy.errorMessage ?? "")
-                 + "\n\nIf you didn’t see a permission prompt, you can also enable Elek in Settings › General › VPN & Device Management.")
+            Text(dns.errorMessage ?? "")
         }
         .sheet(isPresented: $showExplainer, onDismiss: {
-            // Start only after the sheet is fully gone, so the system VPN
-            // permission alert never races the dismissal animation.
             if enableAfterExplainer {
                 enableAfterExplainer = false
-                Task { await proxy.enable() }
+                Task { await dns.enable() }
             }
         }) {
             PermissionExplainer(palette: palette) {
@@ -70,18 +76,31 @@ struct ContentView: View {
     }
 
     private func heroTapped() {
-        if proxy.isOn {
-            Task { await proxy.disable() }
-        } else if !didExplain {
-            showExplainer = true          // first time: explain the system prompt
-        } else {
-            Task { await proxy.enable() }
+        switch dns.state {
+        case .on:
+            Task { await dns.disable() }
+        case .needsActivation:
+            openSettings()               // tap the control to finish enabling
+        case .busy:
+            break
+        default:
+            if !didExplain {
+                showExplainer = true      // first time: explain the two-step flow
+            } else {
+                Task { await dns.enable() }
+            }
         }
+    }
+
+    private func openSettings() {
+        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+        UIApplication.shared.open(url)
     }
 }
 
-/// One-time sheet shown before the very first enable, so the user (and the App
-/// Review team) understands the upcoming "Add Proxy Configurations" system prompt.
+/// One-time sheet shown before the very first enable, so the user understands
+/// that turning Elek on installs an encrypted-DNS configuration and then needs a
+/// quick switch-on in Settings.
 struct PermissionExplainer: View {
     let palette: Palette
     var onContinue: () -> Void
@@ -101,7 +120,7 @@ struct PermissionExplainer: View {
                 .font(.system(size: 22, weight: .semibold))
                 .foregroundStyle(palette.text)
 
-            Text("Elek installs a private, on-device DNS filter that blocks ads and trackers across every app. iOS will now ask permission to add a VPN configuration — it’s a local filter only: there is no VPN server, and your browsing data never leaves your device.")
+            Text("Elek routes your device’s DNS through our private, encrypted resolver, which blocks ads and trackers across every app. It only sees which domains are looked up — never your traffic, pages, or messages — and keeps no logs.\n\nAfter you continue, iOS will ask you to switch Elek on in Settings.")
                 .font(.system(size: 15))
                 .foregroundStyle(palette.secondary)
                 .multilineTextAlignment(.center)
@@ -132,12 +151,12 @@ struct PermissionExplainer: View {
 
 #Preview("Light") {
     ContentView()
-        .environmentObject(ProxyManager())
+        .environmentObject(DNSManager())
         .preferredColorScheme(.light)
 }
 
 #Preview("Dark") {
     ContentView()
-        .environmentObject(ProxyManager())
+        .environmentObject(DNSManager())
         .preferredColorScheme(.dark)
 }

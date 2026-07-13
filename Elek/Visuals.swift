@@ -62,10 +62,12 @@ struct ElekMark: View {
 
 // MARK: - Hero
 
-/// The 236pt circular protection control. Tapping it toggles protection.
+/// The 236pt circular protection control. Tapping it toggles protection (or, when
+/// pending, opens Settings so the user can finish enabling it).
 struct HeroView: View {
     let isOn: Bool
     let isBusy: Bool
+    var isPending: Bool = false
     let palette: Palette
     var action: () -> Void
 
@@ -73,6 +75,14 @@ struct HeroView: View {
 
     private let faceSize: CGFloat = 236
     private let meshSize: CGFloat = 300
+    private let amber = Color(hex: 0xE0A030)
+
+    /// The colour that expresses the current state on the face.
+    private var stateTint: Color {
+        if isOn { return palette.accent }
+        if isPending { return amber }
+        return palette.secondary
+    }
 
     var body: some View {
         Button(action: action) {
@@ -100,7 +110,7 @@ struct HeroView: View {
                                          startPoint: .top, endPoint: .bottom))
                     .frame(width: faceSize, height: faceSize)
                     .overlay(  // accent ring border
-                        Circle().strokeBorder(palette.accent.opacity(isOn ? 0.9 : 0.28),
+                        Circle().strokeBorder(stateTint.opacity(isOn ? 0.9 : (isPending ? 0.7 : 0.28)),
                                               lineWidth: 2))
                     .overlay(  // faint inner "sieve" ring
                         Circle().strokeBorder(palette.secondary.opacity(0.18), lineWidth: 1)
@@ -109,7 +119,7 @@ struct HeroView: View {
                             radius: isOn ? 26 : 14, x: 0, y: 8)
 
                 // Centered glyph.
-                ElekMark(color: isOn ? palette.accent : palette.secondary)
+                ElekMark(color: stateTint)
                     .frame(width: 92, height: 92)
 
                 if isBusy {
@@ -131,94 +141,102 @@ struct HeroView: View {
 
 struct StatusView: View {
     let isOn: Bool
+    var isPending: Bool = false
     let palette: Palette
+
+    private var dotColor: Color {
+        if isOn { return palette.accent }
+        if isPending { return Color(hex: 0xE0A030) }
+        return palette.secondary
+    }
+
+    private var title: String {
+        if isOn { return "Protection active" }
+        if isPending { return "Almost there" }
+        return "Protection off"
+    }
+
+    private var subtitle: String {
+        if isOn { return "Ads and trackers are filtered for every app." }
+        if isPending { return "Enable Elek in Settings to finish turning on." }
+        return "Filtering is paused. Tap to turn on."
+    }
 
     var body: some View {
         HStack(spacing: 11) {
             Circle()
-                .fill(isOn ? palette.accent : palette.secondary)
+                .fill(dotColor)
                 .frame(width: 9, height: 9)
                 .shadow(color: isOn ? palette.accent.opacity(0.8) : .clear, radius: 5)
 
             VStack(alignment: .leading, spacing: 3) {
-                Text(isOn ? "Protection active" : "Protection off")
+                Text(title)
                     .font(.system(size: 17, weight: .semibold))
                     .foregroundStyle(palette.text)
-                Text(isOn
-                     ? "Ads and trackers are being blocked on your device."
-                     : "Filtering is paused. Tap to turn on.")
+                Text(subtitle)
                     .font(.system(size: 13))
                     .foregroundStyle(palette.secondary)
             }
         }
         .animation(.easeInOut(duration: 0.25), value: isOn)
+        .animation(.easeInOut(duration: 0.25), value: isPending)
     }
 }
 
-// MARK: - Live chip
+// MARK: - Activation banner
 
-struct LiveChip: View {
-    let accent: Color
-    @State private var pulse = false
+/// Shown when the DNS configuration is installed but the user hasn't switched it
+/// on yet. iOS doesn't let the app enable it directly, so we guide them.
+struct ActivationBanner: View {
+    let palette: Palette
+    var openSettings: () -> Void
+
+    private let amber = Color(hex: 0xE0A030)
 
     var body: some View {
-        HStack(spacing: 5) {
-            Circle()
-                .fill(accent)
-                .frame(width: 6, height: 6)
-                .scaleEffect(pulse ? 1.0 : 0.55)
-                .opacity(pulse ? 1 : 0.4)
-                .animation(.easeInOut(duration: 0.9).repeatForever(autoreverses: true), value: pulse)
-            Text("live")
-                .font(.system(size: 12, weight: .medium))
-                .foregroundStyle(accent)
+        VStack(spacing: 12) {
+            Text("One last step — just once")
+                .font(.system(size: 15, weight: .semibold))
+                .foregroundStyle(palette.text)
+            Text("iOS only lets you switch Elek on yourself. Open Settings, then:\n1.  General › VPN & Device Management\n2.  Tap DNS, then choose Elek\n\nAfter this it stays on automatically.")
+                .font(.system(size: 13))
+                .foregroundStyle(palette.secondary)
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+            Button(action: openSettings) {
+                Text("Open Settings")
+                    .font(.system(size: 15, weight: .semibold))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 12)
+                    .background(amber, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    .foregroundStyle(.white)
+            }
         }
-        .onAppear { pulse = true }
+        .padding(16)
+        .background(amber.opacity(0.10), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous)
+            .strokeBorder(amber.opacity(0.35), lineWidth: 1))
     }
 }
 
-// MARK: - Counter block
+// MARK: - Protection footer
 
-struct CounterBlock: View {
-    let count: Int
+/// A quiet footer line. The app no longer sees DNS queries (the resolver filters
+/// and logs nothing), so there's no live count to show — just what protection is
+/// in force. Turns accent when active.
+struct ProtectionFooter: View {
     let isOn: Bool
     let palette: Palette
 
     var body: some View {
-        VStack(spacing: 0) {
-            Rectangle()
-                .fill(palette.secondary.opacity(0.18))
-                .frame(height: 1)
-                .padding(.bottom, 18)
-
-            Text(count, format: .number.grouping(.automatic))
-                .font(.system(size: 54, weight: .semibold))
-                .monospacedDigit()
-                .foregroundStyle(isOn ? palette.accent : palette.secondary)
-                .contentTransition(.numericText())
-                .animation(.snappy, value: count)
-
-            Text("REQUESTS BLOCKED TODAY")
-                .font(.system(size: 11, weight: .medium))
-                .tracking(0.5)
-                .foregroundStyle(palette.secondary)
-                .padding(.top, 2)
-
-            if isOn {
-                LiveChip(accent: palette.accent)
-                    .padding(.top, 10)
-                    .transition(.opacity)
-            }
-
-            HStack(spacing: 5) {
-                Image(systemName: "checkmark")
-                    .font(.system(size: 10, weight: .bold))
-                Text("System-wide · DNS level")
-                    .font(.system(size: 12))
-            }
-            .foregroundStyle(palette.secondary)
-            .padding(.top, 14)
+        HStack(spacing: 6) {
+            Image(systemName: "lock.fill")
+                .font(.system(size: 11, weight: .bold))
+            Text("System-wide · encrypted DNS")
+                .font(.system(size: 13))
         }
+        .foregroundStyle(isOn ? palette.accent : palette.secondary)
         .animation(.easeInOut(duration: 0.3), value: isOn)
     }
 }

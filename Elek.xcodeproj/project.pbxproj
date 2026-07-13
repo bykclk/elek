@@ -7,90 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13920B36983D72E6200117D2 /* DomainListParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0ECCDDCCA2C5D278ADF982 /* DomainListParser.swift */; };
-		15E6AF555873DC280544A86F /* Forwarders.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8745BD8BB28F4393C7C9DE /* Forwarders.swift */; };
-		1D9CAABECC644E5CFAEC24EB /* BinaryFuseBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850D72F8A5FE23406608639 /* BinaryFuseBuilder.swift */; };
-		2249FC27579052B27DB1D470 /* CounterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1280B51790B7D9AB53E622C0 /* CounterStore.swift */; };
 		24D95A47A8DEBBC3FAED3A35 /* ElekApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DADE9EAABFBF49D99720CD0 /* ElekApp.swift */; };
 		26EA1481AA1DE28F677C9A8B /* Visuals.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AF9E9B9893BF6B7C76A316 /* Visuals.swift */; };
-		3AF0B2301300CC5B331C0C7E /* DNSMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C82ACCEBF8FF2151DCAE6 /* DNSMessage.swift */; };
-		3D683D38D4D2F710420C62A6 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A73188ED560429933B4E8D /* PacketTunnelProvider.swift */; };
-		437A74617C5263FFA9F156DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B079A1E514FEF4F4091A7B /* Constants.swift */; };
-		59142C2524FAF45364F03D32 /* BlockCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F1AB3E834B03698697A9AF /* BlockCounter.swift */; };
-		59CFA951BC6B1E8F78B74348 /* Blocklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C511EE0A50A59073623B50 /* Blocklist.swift */; };
 		83961A5C7BFF9D2F3075FA86 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D39DCB3D9B5F44AF5D58B8E8 /* PrivacyInfo.xcprivacy */; };
-		9602763034A5B22A8BE38CA5 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 05AFAD7CA8170398D2320BE1 /* PrivacyInfo.xcprivacy */; };
 		968A4FC49A3A316B02E481CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07620B13754ECCE76E25749B /* ContentView.swift */; };
-		97894D8E51C16C55416519DE /* IPPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B28F4DC4E73695C9BCCB59 /* IPPacket.swift */; };
-		9CF190051A090C74FF07D3C2 /* ProxyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D258B9D160A7C1B78A571FEC /* ProxyManager.swift */; };
-		A2BB50CB4AA1B4DBA46B0424 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5685FC14A9E467A25E9953F1 /* AppGroup.swift */; };
-		AA748FC0FD979C4E5924E894 /* BlockCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F1AB3E834B03698697A9AF /* BlockCounter.swift */; };
-		AF2E4F478577F9FDD4F57ED7 /* BlocklistUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA11B1DDEFF1978E72B6046D /* BlocklistUpdater.swift */; };
-		B5DB1DBD935604A84E677F90 /* blocklist.bin in Resources */ = {isa = PBXBuildFile; fileRef = F24C370E973806B055A88E59 /* blocklist.bin */; };
 		BD9C837C0182BB77391A7592 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3FA36AB4757BB907864145A /* Assets.xcassets */; };
-		BE302BB7974E47D5FE6007E8 /* BlocklistInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BD3E7B0F320EB7DD649C29 /* BlocklistInstaller.swift */; };
 		C96FD061F5AD83AB13DA321C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DF80128486EEB433405A8 /* Theme.swift */; };
 		CE07AE5F58699AF620816F30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDF07FBE9BFA47D5880A2059 /* LaunchScreen.storyboard */; };
+		D050736AE0BFA3413773FD6C /* DNSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610212A37BC60A6D89981D4A /* DNSManager.swift */; };
 		DF6616BFAA55904F00EB05DD /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F304C285B2A8C58DC4D900FC /* Localizable.xcstrings */; };
 		E7ED9D19F6911925510DAEA9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B079A1E514FEF4F4091A7B /* Constants.swift */; };
-		EBCC54ABD19018130EFFA4B9 /* ElekProxy.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6B8ABB56CF1C6853F0B956BC /* ElekProxy.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		F2139324167CCAF2C7C40D5B /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5685FC14A9E467A25E9953F1 /* AppGroup.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		6A7312A43A1A333EC1FF65A9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 20075C12CD441CDFC66D54FA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1EC639F41B23ACBC969EC0DB;
-			remoteInfo = ElekProxy;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		FBFED446F31A07CD1A27DF85 /* Embed Foundation Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				EBCC54ABD19018130EFFA4B9 /* ElekProxy.appex in Embed Foundation Extensions */,
-			);
-			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		05AFAD7CA8170398D2320BE1 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		07620B13754ECCE76E25749B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		1280B51790B7D9AB53E622C0 /* CounterStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterStore.swift; sourceTree = "<group>"; };
-		14BD3E7B0F320EB7DD649C29 /* BlocklistInstaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocklistInstaller.swift; sourceTree = "<group>"; };
 		2DADE9EAABFBF49D99720CD0 /* ElekApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElekApp.swift; sourceTree = "<group>"; };
-		5480DC68A43209FCCD5F0EBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		5685FC14A9E467A25E9953F1 /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
-		5A6C82ACCEBF8FF2151DCAE6 /* DNSMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSMessage.swift; sourceTree = "<group>"; };
 		60656FDC38807CB01E4F6D8E /* Elek.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Elek.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		610212A37BC60A6D89981D4A /* DNSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSManager.swift; sourceTree = "<group>"; };
 		63B079A1E514FEF4F4091A7B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		6B8ABB56CF1C6853F0B956BC /* ElekProxy.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ElekProxy.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		78A73188ED560429933B4E8D /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
-		7B0ECCDDCCA2C5D278ADF982 /* DomainListParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainListParser.swift; sourceTree = "<group>"; };
-		7B1A465F842CD2414A244C1C /* ElekProxy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ElekProxy.entitlements; sourceTree = "<group>"; };
-		86B28F4DC4E73695C9BCCB59 /* IPPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPPacket.swift; sourceTree = "<group>"; };
 		A18DF80128486EEB433405A8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		A5C511EE0A50A59073623B50 /* Blocklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blocklist.swift; sourceTree = "<group>"; };
-		B3F1AB3E834B03698697A9AF /* BlockCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCounter.swift; sourceTree = "<group>"; };
 		B8A3577F2B98A3220A6DC94A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C3FA36AB4757BB907864145A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CA11B1DDEFF1978E72B6046D /* BlocklistUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocklistUpdater.swift; sourceTree = "<group>"; };
 		CDF07FBE9BFA47D5880A2059 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D258B9D160A7C1B78A571FEC /* ProxyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyManager.swift; sourceTree = "<group>"; };
 		D2AF9E9B9893BF6B7C76A316 /* Visuals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visuals.swift; sourceTree = "<group>"; };
 		D3927674950E9CE7C0FF4496 /* Elek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Elek.entitlements; sourceTree = "<group>"; };
 		D39DCB3D9B5F44AF5D58B8E8 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		D850D72F8A5FE23406608639 /* BinaryFuseBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryFuseBuilder.swift; sourceTree = "<group>"; };
-		DB8745BD8BB28F4393C7C9DE /* Forwarders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forwarders.swift; sourceTree = "<group>"; };
-		F24C370E973806B055A88E59 /* blocklist.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = blocklist.bin; sourceTree = "<group>"; };
 		F304C285B2A8C58DC4D900FC /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,22 +40,16 @@
 			isa = PBXGroup;
 			children = (
 				C3FA36AB4757BB907864145A /* Assets.xcassets */,
-				D850D72F8A5FE23406608639 /* BinaryFuseBuilder.swift */,
-				14BD3E7B0F320EB7DD649C29 /* BlocklistInstaller.swift */,
-				CA11B1DDEFF1978E72B6046D /* BlocklistUpdater.swift */,
 				07620B13754ECCE76E25749B /* ContentView.swift */,
-				1280B51790B7D9AB53E622C0 /* CounterStore.swift */,
-				7B0ECCDDCCA2C5D278ADF982 /* DomainListParser.swift */,
+				610212A37BC60A6D89981D4A /* DNSManager.swift */,
 				D3927674950E9CE7C0FF4496 /* Elek.entitlements */,
 				2DADE9EAABFBF49D99720CD0 /* ElekApp.swift */,
 				B8A3577F2B98A3220A6DC94A /* Info.plist */,
 				CDF07FBE9BFA47D5880A2059 /* LaunchScreen.storyboard */,
 				F304C285B2A8C58DC4D900FC /* Localizable.xcstrings */,
 				D39DCB3D9B5F44AF5D58B8E8 /* PrivacyInfo.xcprivacy */,
-				D258B9D160A7C1B78A571FEC /* ProxyManager.swift */,
 				A18DF80128486EEB433405A8 /* Theme.swift */,
 				D2AF9E9B9893BF6B7C76A316 /* Visuals.swift */,
-				86E3931F5AD6F72EF4EFBD46 /* Resources */,
 			);
 			path = Elek;
 			sourceTree = "<group>";
@@ -123,7 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				07944D5308DCC2F1F463163A /* Elek */,
-				DAF290546572A87E81F28AEF /* ElekProxy */,
 				8034DF66070E47A7C6D38DD2 /* Shared */,
 				8E34E42E68DB667C44B37B7E /* Products */,
 			);
@@ -132,78 +66,32 @@
 		8034DF66070E47A7C6D38DD2 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				5685FC14A9E467A25E9953F1 /* AppGroup.swift */,
-				B3F1AB3E834B03698697A9AF /* BlockCounter.swift */,
 				63B079A1E514FEF4F4091A7B /* Constants.swift */,
 			);
 			path = Shared;
-			sourceTree = "<group>";
-		};
-		86E3931F5AD6F72EF4EFBD46 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				F24C370E973806B055A88E59 /* blocklist.bin */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		8E34E42E68DB667C44B37B7E /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				60656FDC38807CB01E4F6D8E /* Elek.app */,
-				6B8ABB56CF1C6853F0B956BC /* ElekProxy.appex */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		DAF290546572A87E81F28AEF /* ElekProxy */ = {
-			isa = PBXGroup;
-			children = (
-				A5C511EE0A50A59073623B50 /* Blocklist.swift */,
-				5A6C82ACCEBF8FF2151DCAE6 /* DNSMessage.swift */,
-				7B1A465F842CD2414A244C1C /* ElekProxy.entitlements */,
-				DB8745BD8BB28F4393C7C9DE /* Forwarders.swift */,
-				5480DC68A43209FCCD5F0EBF /* Info.plist */,
-				86B28F4DC4E73695C9BCCB59 /* IPPacket.swift */,
-				78A73188ED560429933B4E8D /* PacketTunnelProvider.swift */,
-				05AFAD7CA8170398D2320BE1 /* PrivacyInfo.xcprivacy */,
-			);
-			path = ElekProxy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1EC639F41B23ACBC969EC0DB /* ElekProxy */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B50B9B72DEB61E615A5B003A /* Build configuration list for PBXNativeTarget "ElekProxy" */;
-			buildPhases = (
-				41E413853039115321F19FD0 /* Sources */,
-				D629B9DF5EB2F6369656D215 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ElekProxy;
-			packageProductDependencies = (
-			);
-			productName = ElekProxy;
-			productReference = 6B8ABB56CF1C6853F0B956BC /* ElekProxy.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		B0E002AEA74B71ED3BAD1B8D /* Elek */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5A54C7840346C8985BD0C0A /* Build configuration list for PBXNativeTarget "Elek" */;
 			buildPhases = (
 				853A7E3EE3F076EBBBD32083 /* Sources */,
 				04EF2306C663C281CBD791A0 /* Resources */,
-				FBFED446F31A07CD1A27DF85 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8C681E0D58EFC54439AA9E1F /* PBXTargetDependency */,
 			);
 			name = Elek;
 			packageProductDependencies = (
@@ -221,10 +109,6 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					1EC639F41B23ACBC969EC0DB = {
-						DevelopmentTeam = 9DDG73TKPX;
-						ProvisioningStyle = Automatic;
-					};
 					B0E002AEA74B71ED3BAD1B8D = {
 						DevelopmentTeam = 9DDG73TKPX;
 						ProvisioningStyle = Automatic;
@@ -247,7 +131,6 @@
 			projectRoot = "";
 			targets = (
 				B0E002AEA74B71ED3BAD1B8D /* Elek */,
-				1EC639F41B23ACBC969EC0DB /* ElekProxy */,
 			);
 		};
 /* End PBXProject section */
@@ -261,65 +144,26 @@
 				CE07AE5F58699AF620816F30 /* LaunchScreen.storyboard in Resources */,
 				DF6616BFAA55904F00EB05DD /* Localizable.xcstrings in Resources */,
 				83961A5C7BFF9D2F3075FA86 /* PrivacyInfo.xcprivacy in Resources */,
-				B5DB1DBD935604A84E677F90 /* blocklist.bin in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D629B9DF5EB2F6369656D215 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9602763034A5B22A8BE38CA5 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		41E413853039115321F19FD0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A2BB50CB4AA1B4DBA46B0424 /* AppGroup.swift in Sources */,
-				59142C2524FAF45364F03D32 /* BlockCounter.swift in Sources */,
-				59CFA951BC6B1E8F78B74348 /* Blocklist.swift in Sources */,
-				437A74617C5263FFA9F156DE /* Constants.swift in Sources */,
-				3AF0B2301300CC5B331C0C7E /* DNSMessage.swift in Sources */,
-				15E6AF555873DC280544A86F /* Forwarders.swift in Sources */,
-				97894D8E51C16C55416519DE /* IPPacket.swift in Sources */,
-				3D683D38D4D2F710420C62A6 /* PacketTunnelProvider.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		853A7E3EE3F076EBBBD32083 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2139324167CCAF2C7C40D5B /* AppGroup.swift in Sources */,
-				1D9CAABECC644E5CFAEC24EB /* BinaryFuseBuilder.swift in Sources */,
-				AA748FC0FD979C4E5924E894 /* BlockCounter.swift in Sources */,
-				BE302BB7974E47D5FE6007E8 /* BlocklistInstaller.swift in Sources */,
-				AF2E4F478577F9FDD4F57ED7 /* BlocklistUpdater.swift in Sources */,
 				E7ED9D19F6911925510DAEA9 /* Constants.swift in Sources */,
 				968A4FC49A3A316B02E481CF /* ContentView.swift in Sources */,
-				2249FC27579052B27DB1D470 /* CounterStore.swift in Sources */,
-				13920B36983D72E6200117D2 /* DomainListParser.swift in Sources */,
+				D050736AE0BFA3413773FD6C /* DNSManager.swift in Sources */,
 				24D95A47A8DEBBC3FAED3A35 /* ElekApp.swift in Sources */,
-				9CF190051A090C74FF07D3C2 /* ProxyManager.swift in Sources */,
 				C96FD061F5AD83AB13DA321C /* Theme.swift in Sources */,
 				26EA1481AA1DE28F677C9A8B /* Visuals.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		8C681E0D58EFC54439AA9E1F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1EC639F41B23ACBC969EC0DB /* ElekProxy */;
-			targetProxy = 6A7312A43A1A333EC1FF65A9 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		23344661D79E4A76254E6F72 /* Release */ = {
@@ -417,23 +261,6 @@
 			};
 			name = Release;
 		};
-		27A41EAB68FF61A6705AA923 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ElekProxy/ElekProxy.entitlements;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ElekProxy/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bykclk.elek.dnsproxy;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		328DF459ED8B2FE5D143D339 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -502,23 +329,6 @@
 			};
 			name = Debug;
 		};
-		CE54DA64C6A3B8ED6679D0DF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ElekProxy/ElekProxy.entitlements;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ElekProxy/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bykclk.elek.dnsproxy;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -527,15 +337,6 @@
 			buildConfigurations = (
 				328DF459ED8B2FE5D143D339 /* Debug */,
 				23C6405F46182A60677951CB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		B50B9B72DEB61E615A5B003A /* Build configuration list for PBXNativeTarget "ElekProxy" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CE54DA64C6A3B8ED6679D0DF /* Debug */,
-				27A41EAB68FF61A6705AA923 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

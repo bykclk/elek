@@ -2,19 +2,20 @@ import SwiftUI
 
 @main
 struct ElekApp: App {
-    @StateObject private var proxy = ProxyManager()
-    @StateObject private var updater = BlocklistUpdater()
+    @StateObject private var dns = DNSManager()
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(proxy)
-                .task {
-                    // Seed (bundled) blocklist first so there is always something
-                    // to mmap, then refresh to the full list over the network.
-                    BlocklistInstaller.installIfNeeded()
-                    await proxy.load()
-                    updater.updateIfStale()
+                .environmentObject(dns)
+                .task { await dns.load() }
+                // Re-read the system state whenever we return to the foreground,
+                // so flipping Elek on/off in Settings is reflected immediately.
+                .onChange(of: scenePhase) { phase in
+                    if phase == .active {
+                        Task { await dns.load() }
+                    }
                 }
         }
     }

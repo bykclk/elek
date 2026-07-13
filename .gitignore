@@ -24,3 +24,11 @@ tools/seedgen/seedgen
 *.key
 *.csr
 *.mobileprovision
+
+# Cloudflare Worker (worker/)
+worker/node_modules/
+worker/.wrangler/
+worker/.dev.vars
+# HaGeZi-derived filter is GPLv3 — generated at deploy time, NEVER committed
+# (redistribution). Build it with worker/scripts/build-blocklist.sh.
+worker/blocklist.bin

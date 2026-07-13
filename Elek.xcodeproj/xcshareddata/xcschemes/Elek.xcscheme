@@ -21,20 +21,6 @@
                ReferencedContainer = "container:Elek.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1EC639F41B23ACBC969EC0DB"
-               BuildableName = "ElekProxy.appex"
-               BlueprintName = "ElekProxy"
-               ReferencedContainer = "container:Elek.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
