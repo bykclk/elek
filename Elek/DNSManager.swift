@@ -30,6 +30,23 @@ final class DNSManager: ObservableObject {
     private let manager = NEDNSSettingsManager.shared()
     private let log = Logger(subsystem: "com.bykclk.elek", category: "DNSManager")
 
+    // Screenshot support: `ELEK_UI_STATE=on|pending|off` forces a fixed UI state
+    // (the active state can't occur in the Simulator). Debug-only — never ships.
+    private var screenshotMode = false
+
+    init() {
+        #if DEBUG
+        if let s = ProcessInfo.processInfo.environment["ELEK_UI_STATE"] {
+            screenshotMode = true
+            switch s {
+            case "on": state = .on
+            case "pending": state = .needsActivation
+            default: state = .off
+            }
+        }
+        #endif
+    }
+
     var isOn: Bool { state == .on }
 
     var errorMessage: String? {
@@ -40,6 +57,7 @@ final class DNSManager: ObservableObject {
     /// Re-read the system state. Called on launch and whenever the app returns
     /// to the foreground (e.g. after the user toggles Elek in Settings).
     func load() async {
+        if screenshotMode { return }   // keep the forced screenshot state
         do {
             try await manager.loadFromPreferences()
             state = deriveState()
