@@ -32,3 +32,6 @@ worker/.dev.vars
 # HaGeZi-derived filter is GPLv3 — generated at deploy time, NEVER committed
 # (redistribution). Build it with worker/scripts/build-blocklist.sh.
 worker/blocklist.bin
+
+# App-side resolver token (mirrors the Worker AUTH_TOKEN secret). Never commit.
+Elek/Secrets.xcconfig

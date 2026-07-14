@@ -55,12 +55,19 @@ targets:
     sources:
       - path: Elek
       - path: Shared
+    # Resolver token, kept out of git. Copy Elek/Secrets.xcconfig.example to
+    # Elek/Secrets.xcconfig and fill it in; an empty/missing token just means the
+    # app talks to a resolver that has no AUTH_TOKEN set.
+    configFiles:
+      Debug: Elek/Secrets.xcconfig
+      Release: Elek/Secrets.xcconfig
     info:
       path: Elek/Info.plist
       properties:
         CFBundleDisplayName: Elek
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleShortVersionString: $(MARKETING_VERSION)
+        ELEKDoHToken: $(ELEK_DOH_TOKEN)
         ITSAppUsesNonExemptEncryption: false
         UIApplicationSupportsIndirectInputEvents: true
         UIRequiresFullScreen: true

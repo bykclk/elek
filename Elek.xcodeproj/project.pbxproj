@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B874F6E2B4362307C538A69 /* Secrets.xcconfig.example in Resources */ = {isa = PBXBuildFile; fileRef = C4CFA3E496BE683E6E41317B /* Secrets.xcconfig.example */; };
 		24D95A47A8DEBBC3FAED3A35 /* ElekApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DADE9EAABFBF49D99720CD0 /* ElekApp.swift */; };
 		26EA1481AA1DE28F677C9A8B /* Visuals.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AF9E9B9893BF6B7C76A316 /* Visuals.swift */; };
 		83961A5C7BFF9D2F3075FA86 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D39DCB3D9B5F44AF5D58B8E8 /* PrivacyInfo.xcprivacy */; };
@@ -25,9 +26,11 @@
 		60656FDC38807CB01E4F6D8E /* Elek.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Elek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		610212A37BC60A6D89981D4A /* DNSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSManager.swift; sourceTree = "<group>"; };
 		63B079A1E514FEF4F4091A7B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A01766F5682176E4D1E1777F /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		A18DF80128486EEB433405A8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B8A3577F2B98A3220A6DC94A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C3FA36AB4757BB907864145A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C4CFA3E496BE683E6E41317B /* Secrets.xcconfig.example */ = {isa = PBXFileReference; path = Secrets.xcconfig.example; sourceTree = "<group>"; };
 		CDF07FBE9BFA47D5880A2059 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2AF9E9B9893BF6B7C76A316 /* Visuals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visuals.swift; sourceTree = "<group>"; };
 		D3927674950E9CE7C0FF4496 /* Elek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Elek.entitlements; sourceTree = "<group>"; };
@@ -48,6 +51,8 @@
 				CDF07FBE9BFA47D5880A2059 /* LaunchScreen.storyboard */,
 				F304C285B2A8C58DC4D900FC /* Localizable.xcstrings */,
 				D39DCB3D9B5F44AF5D58B8E8 /* PrivacyInfo.xcprivacy */,
+				A01766F5682176E4D1E1777F /* Secrets.xcconfig */,
+				C4CFA3E496BE683E6E41317B /* Secrets.xcconfig.example */,
 				A18DF80128486EEB433405A8 /* Theme.swift */,
 				D2AF9E9B9893BF6B7C76A316 /* Visuals.swift */,
 			);
@@ -144,6 +149,7 @@
 				CE07AE5F58699AF620816F30 /* LaunchScreen.storyboard in Resources */,
 				DF6616BFAA55904F00EB05DD /* Localizable.xcstrings in Resources */,
 				83961A5C7BFF9D2F3075FA86 /* PrivacyInfo.xcprivacy in Resources */,
+				1B874F6E2B4362307C538A69 /* Secrets.xcconfig.example in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +174,7 @@
 /* Begin XCBuildConfiguration section */
 		23344661D79E4A76254E6F72 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A01766F5682176E4D1E1777F /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Elek/Elek.entitlements;
@@ -185,6 +192,7 @@
 		};
 		23ABF6B6171B6AF884CB245E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A01766F5682176E4D1E1777F /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Elek/Elek.entitlements;

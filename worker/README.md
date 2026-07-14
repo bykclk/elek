@@ -56,5 +56,24 @@ curl -s 'http://localhost:8787/dns-query?dns=q80BAAABAAAAAAAAB2V4YW1wbGUDY29tAAA
 
 | Var | Purpose |
 |-----|---------|
-| `AUTH_TOKEN` (secret) | If set, requests must include it as a path segment: `https://host/<token>/dns-query`. Weak abuse protection only — it ships inside the app binary. Set with `wrangler secret put AUTH_TOKEN`. |
-| `UPSTREAM_DOH` (var) | Upstream DoH resolver. Default `https://1.1.1.1/dns-query`. |
+| `AUTH_TOKEN` (secret) | If set, requests must carry it as a path segment: `https://host/<token>/dns-query`. Set with `wrangler secret put AUTH_TOKEN`. |
+| `UPSTREAM_DOH` (var) | Upstream DoH resolver. Default `https://cloudflare-dns.com/dns-query`. |
+
+### The resolver token
+
+It only stops someone who reads this public repo from pointing their own devices
+at our resolver: the token ships **inside the app binary** and can be extracted
+from the IPA, so treat it as friction, not security — rotate it if abused. The
+token itself is never committed (`Elek/Secrets.xcconfig` is gitignored; copy
+`Elek/Secrets.xcconfig.example` and fill it in — the app injects it into
+`Info.plist` and appends it to the resolver URL).
+
+**Roll it out in this order, or you will break DNS on every installed device:**
+
+1. Ship an app build whose `Secrets.xcconfig` has the token. A tokenised URL works
+   against a Worker with *no* `AUTH_TOKEN` set, so this step is safe on its own.
+2. Confirm devices are on that build.
+3. `wrangler secret put AUTH_TOKEN` — only now do tokenless requests start getting
+   a 403, and any older build stops resolving DNS entirely.
+
+To rotate: update both sides in the same order (new build first, then the secret).
