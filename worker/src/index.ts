@@ -56,14 +56,17 @@ export default {
     }
 
     try {
-      const { body } = await resolveQuery(query, {
+      const { body, cacheControl } = await resolveQuery(query, {
         blocklist,
         upstreamUrl: upstream,
         fetchImpl: fetch,
       });
       return new Response(body, {
         status: 200,
-        headers: { "content-type": DNS_CT, "cache-control": "no-store" },
+        headers: {
+          "content-type": DNS_CT,
+          ...(cacheControl ? { "cache-control": cacheControl } : {}),
+        },
       });
     } catch {
       return new Response("upstream error", { status: 502 });

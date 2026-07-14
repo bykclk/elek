@@ -8,7 +8,9 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { BinaryFuse, fnv1a64 } from "../src/binaryfuse.ts";
-import { parseFirstQuestion, buildNxdomain, base64urlToBytes } from "../src/dns.ts";
+import {
+  parseFirstQuestion, buildNxdomain, base64urlToBytes, minAnswerTTL, BLOCK_TTL,
+} from "../src/dns.ts";
 import { resolveQuery } from "../src/resolver.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -96,6 +98,18 @@ check((nx[3] & 0x0f) === 0x03, "NXDOMAIN Rcode = 3");
 check(nx[0] === 0xab && nx[1] === 0xcd, "NXDOMAIN echoes query ID");
 check(nx[6] === 0 && nx[7] === 0, "NXDOMAIN ANCOUNT = 0");
 
+// The SOA is what makes the blocked answer negatively cacheable (RFC 2308).
+// Without it every blocked lookup comes straight back to the resolver.
+const be32 = (b: Uint8Array, i: number) =>
+  ((b[i] << 24) | (b[i + 1] << 16) | (b[i + 2] << 8) | b[i + 3]) >>> 0;
+const soa = parsed!.qnameEnd + 4; // authority section starts after the question
+check(nx[8] === 0 && nx[9] === 1, "NXDOMAIN NSCOUNT = 1 (SOA present)");
+check(nx[soa] === 0xc0 && nx[soa + 1] === 0x0c, "SOA NAME compresses to the qname");
+check(((nx[soa + 2] << 8) | nx[soa + 3]) === 6, "SOA TYPE = 6");
+check(((nx[soa + 4] << 8) | nx[soa + 5]) === 1, "SOA CLASS = IN");
+check(be32(nx, soa + 6) === BLOCK_TTL, `SOA TTL = ${BLOCK_TTL}`);
+check(be32(nx, nx.length - 4) === BLOCK_TTL, `SOA MINIMUM (negative TTL) = ${BLOCK_TTL}`);
+
 // GET base64url round-trip parses to the same question.
 const b64 = Buffer.from(q).toString("base64url");
 const decoded = base64urlToBytes(b64);
@@ -111,6 +125,7 @@ const blockedRes = await resolveQuery(q, {
 });
 check(blockedRes.blocked === true, "blocked query flagged blocked");
 check((blockedRes.body[3] & 0x0f) === 0x03, "blocked query returns NXDOMAIN");
+check(blockedRes.cacheControl === `max-age=${BLOCK_TTL}`, "blocked answer is HTTP-cacheable");
 
 // resolveQuery: allowed -> forwarded to upstream.
 let forwarded = false;
@@ -119,11 +134,45 @@ const allowRes = await resolveQuery(buildQuery("example.com"), {
   upstreamUrl: "http://unused",
   fetchImpl: async () => {
     forwarded = true;
-    return new Response(new Uint8Array([0xde, 0xad, 0xbe, 0xef]), { status: 200 });
+    return new Response(new Uint8Array([0xde, 0xad, 0xbe, 0xef]), {
+      status: 200,
+      headers: { "cache-control": "max-age=300" },
+    });
   },
 });
 check(!allowRes.blocked && forwarded, "allowed query forwarded to upstream");
 check(allowRes.body.length === 4, "allowed query returns upstream body verbatim");
+check(allowRes.cacheControl === "max-age=300", "allowed answer keeps the upstream's freshness");
+
+// A realistic answer: one A record carrying its own TTL.
+function buildAnswer(name: string, ttl: number): Uint8Array {
+  const query = buildQuery(name);
+  const answer = [
+    0xc0, 0x0c, // NAME -> the question's qname
+    0x00, 0x01, // TYPE = A
+    0x00, 0x01, // CLASS = IN
+    (ttl >>> 24) & 0xff, (ttl >>> 16) & 0xff, (ttl >>> 8) & 0xff, ttl & 0xff,
+    0x00, 0x04, // RDLENGTH
+    1, 2, 3, 4, // 1.2.3.4
+  ];
+  const out = new Uint8Array(query.length + answer.length);
+  out.set(query);
+  out.set(answer, query.length);
+  out[2] = 0x81; out[3] = 0x80; // QR + RA, Rcode 0
+  out[6] = 0; out[7] = 1;       // ANCOUNT = 1
+  return out;
+}
+
+check(minAnswerTTL(buildAnswer("example.com", 220)) === 220, "minAnswerTTL reads the record TTL");
+check(minAnswerTTL(buildQuery("example.com")) === null, "minAnswerTTL is null with no records");
+
+// Cloudflare's resolver sends no Cache-Control, so we derive it from the answer.
+const derived = await resolveQuery(buildQuery("example.com"), {
+  blocklist: fuse,
+  upstreamUrl: "http://unused",
+  fetchImpl: async () => new Response(buildAnswer("example.com", 220), { status: 200 }),
+});
+check(derived.cacheControl === "max-age=220", "allowed answer falls back to the record TTL");
 
 // ---------------------------------------------------------------------------
 console.log("");
